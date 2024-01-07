@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+
+<html lang="en">
+<head>
+  <h1 style="text-align: center;">To Do Agenda App</h1>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h3 style="text-align: left;">Task Title</h3>
+        </header>
+         {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+      <p class="flash">{{ message }}</p>
+        {% endfor %}
+        {%endif%}
+        {%endwith%}
+        <form action="{{url_for('add')}}" method="post">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Add a new task..." aria-describedby="button-addon2" name="task">
+            <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
+          </div>
+        </form>
+    </div>
+
+
+    <hr>
+
+{% for task in tasks %}
+
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center">
+        <div class="list-group">
+
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">{{task.task}}</h6>
+
+              </div>
+
+            </div>
+          </a>
+
+
+        </div>
+        <a class="btn btn-success" href="{{url_for('delete', task_id=task.id)}}" role="button">Done</a>
+        <a class="btn btn-danger" href="{{url_for('delete', task_id=task.id)}}" role="button">Delete</a>
+      </div>
+{% endfor %}
+</body>
+</html>
