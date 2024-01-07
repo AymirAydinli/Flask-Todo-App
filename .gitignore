@@ -5,9 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
-
+.idea
+.DS_Store
 # Distribution / packaging
 .Python
+/.DS_Store
 build/
 develop-eggs/
 dist/
